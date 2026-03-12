@@ -48,7 +48,7 @@ export default function SendGnot() {
       addToast(result.status, result.txHash);
     } catch (error) {
       console.error(error);
-      addToast("failed", null);
+      addToast("failed", error instanceof Error ? error.message : "Failed to send GNOT");
     }
   };
 

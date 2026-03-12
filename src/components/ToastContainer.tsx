@@ -70,7 +70,7 @@ export default function ToastContainer() {
           <Status>
             {toast.status === "success" ? "Transaction Success" : "Transaction Failed"}
           </Status>
-          <Hash>txHash: {toast.txHash ?? "-"}</Hash>
+          <Hash>txHash: {toast.message}</Hash>
         </ToastItem>
       ))}
     </Wrapper>

@@ -28,15 +28,16 @@ const StatusDot = styled.span`
 `;
 
 export default function ConnectWallet() {
-  const { isConnected, address, connect, setAddress } = useWalletStore();
+  const { isConnected, address, setIsConnected, setAddress, addToast } = useWalletStore();
 
   const handleConnect = async () => {
     try {
       const addr = await connectWallet();
-      connect();
+      setIsConnected(true);
       setAddress(addr);
     } catch (error) {
-      alert(error instanceof Error ? error.message : "Failed to connect wallet");
+      console.error(error);
+      addToast("failed", error instanceof Error ? error.message : "Failed to connect wallet");
     }
   };
 

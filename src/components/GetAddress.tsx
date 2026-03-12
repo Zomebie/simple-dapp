@@ -18,14 +18,16 @@ const Info = styled.div`
 `;
 
 export default function GetAddress() {
-  const { isConnected } = useWalletStore();
+  const { isConnected, addToast } = useWalletStore();
   const [address, setAddress] = useState<string | null>(null);
 
   const handleGetAddress = async () => {
     try {
-      setAddress(await getAddress());
-    } catch {
-      console.error("Failed to get address");
+      const addr = await getAddress();
+      setAddress(addr);
+    } catch (error) {
+      console.error(error);
+      addToast("failed", error instanceof Error ? error.message : "Failed to get address");
     }
   };
 

@@ -17,14 +17,16 @@ const Info = styled.div`
 `;
 
 export default function GetBalance() {
-  const { isConnected } = useWalletStore();
+  const { isConnected, addToast } = useWalletStore();
   const [balance, setBalance] = useState<string | null>(null);
 
   const handleGetBalance = async () => {
     try {
-      setBalance(await getBalance());
-    } catch {
-      console.error("Failed to get balance");
+      const bal = await getBalance();
+      setBalance(bal);
+    } catch (error) {
+      console.error(error);
+      addToast("failed", error instanceof Error ? error.message : "Failed to get balance");
     }
   };
 

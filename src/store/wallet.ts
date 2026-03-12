@@ -11,14 +11,11 @@ interface WalletState {
   address: string | null;
   balance: string | null;
   toasts: Toast[];
-  connect: () => void;
+  setIsConnected: (isConnected: boolean) => void;
   setAddress: (address: string | null) => void;
   setBalance: (balance: string | null) => void;
   addToast: (status: "success" | "failed", message: string | null) => void;
-  removeToast: (id: number) => void;
 }
-
-let toastId = 0;
 
 export const useWalletStore = create<WalletState>((set) => ({
   isConnected: false,
@@ -26,16 +23,16 @@ export const useWalletStore = create<WalletState>((set) => ({
   balance: null,
   toasts: [],
 
-  connect: () => set({ isConnected: true }),
+  setIsConnected: (isConnected) => set({ isConnected }),
 
   setAddress: (address) => set({ address }),
 
   setBalance: (balance) => set({ balance }),
 
   addToast: (status, message) => {
-    const id = ++toastId;
+    const id = Date.now();
     set((state) => ({
-      toasts: [...state.toasts, { id, status, message }],
+      toasts: [...state.toasts, { id: Date.now(), status, message }],
     }));
     setTimeout(() => {
       set((state) => ({
@@ -43,9 +40,4 @@ export const useWalletStore = create<WalletState>((set) => ({
       }));
     }, 3000);
   },
-
-  removeToast: (id) =>
-    set((state) => ({
-      toasts: state.toasts.filter((t) => t.id !== id),
-    })),
 }));
