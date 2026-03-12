@@ -24,11 +24,10 @@ export interface Transaction {
 }
 
 export interface DoContractParams {
-  messages: Array<{
+  messages: {
     type: "/bank.MsgSend" | "/vm.m_call" | "/vm.m_addpkg" | "/vm.m_run";
     value: { [key: string]: unknown };
-  }>;
-  tx: Transaction;
+  }[];
   memo?: string;
   isNotification?: boolean;
 }

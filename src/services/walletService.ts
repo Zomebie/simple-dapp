@@ -55,8 +55,6 @@ export async function sendGnot(toAddress: string, amount: string): Promise<SendG
         },
       },
     ],
-    gasFee: 1,
-    gasWanted: 10000000,
   });
 
   return {
