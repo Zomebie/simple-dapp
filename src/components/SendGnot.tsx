@@ -46,7 +46,7 @@ export default function SendGnot() {
 
     try {
       const account = await window.adena.GetAccount();
-      if (account.status !== "success") return;
+      if (account.status !== "success") throw new Error("Failed to get account");
 
       const response = await window.adena.DoContract({
         messages: [
@@ -68,8 +68,9 @@ export default function SendGnot() {
       } else {
         addToast("failed", response.data?.hash ?? null);
       }
-    } catch {
-      addToast("failed", null);
+    } catch (error) {
+      console.error(error);
+      addToast("failed", error instanceof Error ? error.message : null);
     }
   };
 
