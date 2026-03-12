@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useWalletStore } from "../store/wallet";
 import { sendGnot } from "../services/wallet";
 import Card from "./Card";
@@ -37,15 +37,27 @@ const Label = styled.label`
   letter-spacing: -0.01em;
 `;
 
+interface SendFormValues {
+  toAddress: string;
+  amount: string;
+}
+
 export default function SendGnot() {
   const { isConnected, addToast } = useWalletStore();
-  const [toAddress, setToAddress] = useState("");
-  const [amount, setAmount] = useState("");
+  const { register, handleSubmit, reset } = useForm<SendFormValues>({
+    defaultValues: {
+      toAddress: "",
+      amount: "",
+    },
+  });
 
-  const handleSend = async () => {
+  const onSubmit = async (data: SendFormValues) => {
     try {
-      const result = await sendGnot(toAddress, amount);
+      const result = await sendGnot(data.toAddress, data.amount);
       addToast(result.status, result.txHash);
+      if (result.status === "success") {
+        reset();
+      }
     } catch (error) {
       console.error(error);
       addToast("failed", error instanceof Error ? error.message : "Failed to send GNOT");
@@ -54,27 +66,17 @@ export default function SendGnot() {
 
   return (
     <Card title="Send GNOT">
-      <Label>
-        To Address
-        <Input
-          type="text"
-          placeholder="g1..."
-          value={toAddress}
-          onChange={(e) => setToAddress(e.target.value)}
-        />
-      </Label>
-      <Label>
-        Amount (ugnot)
-        <Input
-          type="text"
-          placeholder="1000000"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-      </Label>
-      <Button disabled={!isConnected} onClick={handleSend}>
-        Send
-      </Button>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Label>
+          To Address
+          <Input type="text" placeholder="g1..." {...register("toAddress", { required: true })} />
+        </Label>
+        <Label>
+          Amount (ugnot)
+          <Input type="number" placeholder="1000000" {...register("amount", { required: true })} />
+        </Label>
+        <Button disabled={!isConnected}>Send</Button>
+      </form>
     </Card>
   );
 }
