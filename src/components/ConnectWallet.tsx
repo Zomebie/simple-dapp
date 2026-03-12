@@ -1,7 +1,7 @@
 import { useWalletStore } from "../store/wallet";
 import { connectWallet } from "../services/wallet";
-import Card from "./Card";
-import Button from "./Button";
+import Card from "./common/Card";
+import Button from "./common/Button";
 import styled from "styled-components";
 
 const Info = styled.div`
