@@ -35,8 +35,8 @@ const ToastItem = styled.div<{ $success: boolean }>`
   font-size: 14px;
   min-width: 300px;
   max-width: 380px;
-  box-shadow: 0 4px 16px ${({ $success }) =>
-      $success ? "rgba(48, 209, 88, 0.3)" : "rgba(255, 69, 58, 0.3)"},
+  box-shadow:
+    0 4px 16px ${({ $success }) => ($success ? "rgba(48, 209, 88, 0.3)" : "rgba(255, 69, 58, 0.3)")},
     0 1px 3px rgba(0, 0, 0, 0.08);
   animation: ${slideIn} 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(20px);
@@ -54,7 +54,7 @@ const Hash = styled.div`
   font-size: 11px;
   word-break: break-all;
   opacity: 0.85;
-  font-family: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
   line-height: 1.4;
 `;
 
@@ -68,9 +68,7 @@ export default function ToastContainer() {
       {toasts.map((toast) => (
         <ToastItem key={toast.id} $success={toast.status === "success"}>
           <Status>
-            {toast.status === "success"
-              ? "Transaction Success"
-              : "Transaction Failed"}
+            {toast.status === "success" ? "Transaction Success" : "Transaction Failed"}
           </Status>
           <Hash>txHash: {toast.txHash ?? "-"}</Hash>
         </ToastItem>

@@ -13,7 +13,7 @@ const Info = styled.div`
   padding: 12px 16px;
   border-radius: 10px;
   color: #1d1d1f;
-  font-family: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
   line-height: 1.5;
 `;
 

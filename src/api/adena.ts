@@ -1,4 +1,4 @@
-import type { AccountData, Response, AdenaWallet, DoContractParams, TransactionData } from "@/types";
+import type { Account, Response, AdenaWallet, DoContractParams, Transaction } from "@/types";
 
 let adenaInstance: AdenaWallet | null = null;
 
@@ -17,12 +17,12 @@ export async function establish(siteName: string): Promise<Response> {
   return adena.AddEstablish(siteName);
 }
 
-export async function getAccount(): Promise<Response<AccountData>> {
+export async function getAccount(): Promise<Response<Account>> {
   const adena = getAdena();
   return adena.GetAccount();
 }
 
-export async function doContract(params: DoContractParams): Promise<Response<TransactionData>> {
+export async function doContract(params: DoContractParams): Promise<Response<Transaction>> {
   const adena = getAdena();
   return adena.DoContract(params);
 }

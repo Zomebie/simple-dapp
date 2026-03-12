@@ -4,12 +4,14 @@ const CardWrapper = styled.div`
   border-radius: 16px;
   overflow: hidden;
   background: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04),
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
     0 4px 12px rgba(0, 0, 0, 0.03);
   transition: box-shadow 0.3s ease;
 
   &:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.06),
       0 8px 24px rgba(0, 0, 0, 0.05);
   }
 `;

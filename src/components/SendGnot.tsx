@@ -14,7 +14,7 @@ const Input = styled.input`
   background: #fff;
   color: #1d1d1f;
   transition: all 0.2s ease;
-  font-family: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
 
   &::placeholder {
     color: #aeaeb2;
