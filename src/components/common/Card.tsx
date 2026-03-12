@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CardWrapper = styled.div`
+const CardWrapper = styled.section`
   border-radius: 16px;
   overflow: hidden;
   background: #ffffff;
@@ -44,9 +44,9 @@ interface CardProps {
 
 export default function Card({ title, children }: CardProps) {
   return (
-    <CardWrapper>
+    <CardWrapper aria-labelledby={`card-${title.replaceAll(/\s+/g, "-").toLowerCase()}`}>
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle id={`card-${title.replaceAll(/\s+/g, "-").toLowerCase()}`}>{title}</CardTitle>
       </CardHeader>
       <CardBody>{children}</CardBody>
     </CardWrapper>

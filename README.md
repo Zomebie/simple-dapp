@@ -80,6 +80,38 @@ src/
 - **Client State**: 지갑 연결 상태, Toast 알림 → Zustand store
 - **Server State**: 주소, 잔액 → Adena API를 통해 조회 (버튼 클릭 시 fetch)
 
+## Accessibility
+
+웹 접근성(WAI-ARIA)을 고려하여 스크린 리더 및 키보드 사용자를 지원합니다.
+
+### Semantic HTML
+
+- `<header>`, `<main>`, `<section>`, `<form>`, `<fieldset>` 등 시맨틱 태그 사용
+- 카드 컴포넌트를 `<section>` + `aria-labelledby`로 제목과 연결
+
+### Form Accessibility
+
+- `<label htmlFor>` + `id`로 인풋과 라벨 명시적 연결
+- `aria-invalid`: 유효성 검증 실패 시 인풋에 에러 상태 전달
+- `aria-describedby`: 에러 메시지를 인풋에 연결하여 스크린 리더가 안내
+- `role="alert"`: 에러 메시지가 나타날 때 즉시 읽어줌
+
+### Live Regions
+
+- Toast 컨테이너에 `aria-live="polite"` 적용 — 트랜잭션 결과를 스크린 리더가 자동 안내
+- 각 Toast에 `role="alert"`로 즉각적인 알림 전달
+
+### Status & Feedback
+
+- 주소, 잔액 등 조회 결과에 `role="status"` + `aria-label` 적용
+- 버튼에 상태별 `aria-label` 제공 (예: "Wallet already connected")
+
+### Keyboard Navigation
+
+- 모든 인터랙티브 요소에 `:focus-visible` 아웃라인 스타일 적용
+- 폼 내 Tab 키로 순차 이동 가능
+- 장식적 요소(`StatusDot`, `Suffix`)에 `aria-hidden="true"` 적용
+
 ## Libraries
 
 | 라이브러리 | 용도 |

@@ -33,8 +33,12 @@ export default function GetAddress() {
 
   return (
     <Card title="Get Gno.land Address">
-      {address && <Info>{address}</Info>}
-      <Button disabled={!isConnected} onClick={handleGetAddress}>
+      {address && (
+        <Info role="status" aria-label={`Gno.land address: ${address}`}>
+          {address}
+        </Info>
+      )}
+      <Button disabled={!isConnected} onClick={handleGetAddress} aria-label="Get Gno.land address">
         Get Address
       </Button>
     </Card>

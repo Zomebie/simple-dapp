@@ -49,7 +49,7 @@ const Subtitle = styled.p`
   font-weight: 400;
 `;
 
-const Container = styled.div`
+const Main = styled.main`
   max-width: 680px;
   margin: 0 auto;
   padding: 0 20px;
@@ -70,14 +70,14 @@ export default function App() {
           <Title>Adena Wallet Integration</Title>
           <Subtitle>Connect and interact with Gno.land blockchain</Subtitle>
         </HeaderWrapper>
-        <Container>
+        <Main>
           <CardList>
             <ConnectWallet />
             <GetAddress />
             <GetBalance />
             <SendGnot />
           </CardList>
-        </Container>
+        </Main>
       </Page>
       <ToastContainer />
     </>

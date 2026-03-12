@@ -32,8 +32,12 @@ export default function GetBalance() {
 
   return (
     <Card title="Get Balance">
-      {balance !== null && <Info>{balance}</Info>}
-      <Button disabled={!isConnected} onClick={handleGetBalance}>
+      {balance !== null && (
+        <Info role="status" aria-label={`Account balance: ${balance}`}>
+          {balance}
+        </Info>
+      )}
+      <Button disabled={!isConnected} onClick={handleGetBalance} aria-label="Get account balance">
         Get Balance
       </Button>
     </Card>

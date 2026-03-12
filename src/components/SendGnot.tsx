@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { useForm } from "react-hook-form";
 import { useWalletStore } from "../store/wallet";
 import { sendGnot } from "../services/wallet";
@@ -11,13 +12,16 @@ const Form = styled.form`
   gap: 16px;
 `;
 
-const FieldGroup = styled.div`
+const FieldGroup = styled.fieldset`
   display: flex;
   flex-direction: column;
   gap: 6px;
+  border: none;
+  margin: 0;
+  padding: 0;
 `;
 
-const LabelText = styled.span`
+const Label = styled.label`
   font-size: 13px;
   font-weight: 500;
   color: #86868b;
@@ -86,6 +90,12 @@ interface SendFormValues {
 
 export default function SendGnot() {
   const { isConnected, addToast } = useWalletStore();
+  const id = useId();
+  const addressId = `${id}-address`;
+  const amountId = `${id}-amount`;
+  const addressErrorId = `${id}-address-error`;
+  const amountErrorId = `${id}-amount-error`;
+
   const {
     register,
     handleSubmit,
@@ -113,13 +123,17 @@ export default function SendGnot() {
 
   return (
     <Card title="Send GNOT">
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmit)} aria-label="Send GNOT form" noValidate>
         <FieldGroup>
-          <LabelText>To Address</LabelText>
+          <Label htmlFor={addressId}>To Address</Label>
           <InputWrapper $hasError={!!errors.toAddress}>
             <Input
+              id={addressId}
               type="text"
               placeholder="g1..."
+              autoComplete="off"
+              aria-invalid={!!errors.toAddress}
+              aria-describedby={errors.toAddress ? addressErrorId : undefined}
               {...register("toAddress", {
                 required: "Address is required",
                 pattern: {
@@ -129,15 +143,23 @@ export default function SendGnot() {
               })}
             />
           </InputWrapper>
-          {errors.toAddress && <ErrorText>{errors.toAddress.message}</ErrorText>}
+          {errors.toAddress && (
+            <ErrorText id={addressErrorId} role="alert">
+              {errors.toAddress.message}
+            </ErrorText>
+          )}
         </FieldGroup>
 
         <FieldGroup>
-          <LabelText>Amount</LabelText>
+          <Label htmlFor={amountId}>Amount</Label>
           <InputWrapper $hasError={!!errors.amount}>
             <Input
+              id={amountId}
               type="number"
               placeholder="1000000"
+              autoComplete="off"
+              aria-invalid={!!errors.amount}
+              aria-describedby={errors.amount ? amountErrorId : undefined}
               {...register("amount", {
                 required: "Amount is required",
                 validate: {
@@ -147,12 +169,16 @@ export default function SendGnot() {
                 },
               })}
             />
-            <Suffix>ugnot</Suffix>
+            <Suffix aria-hidden="true">ugnot</Suffix>
           </InputWrapper>
-          {errors.amount && <ErrorText>{errors.amount.message}</ErrorText>}
+          {errors.amount && (
+            <ErrorText id={amountErrorId} role="alert">
+              {errors.amount.message}
+            </ErrorText>
+          )}
         </FieldGroup>
 
-        <Button disabled={!isConnected || isSubmitting}>
+        <Button disabled={!isConnected || isSubmitting} type="submit">
           {isSubmitting ? "Sending..." : "Send"}
         </Button>
       </Form>

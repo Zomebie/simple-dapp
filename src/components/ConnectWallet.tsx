@@ -44,12 +44,16 @@ export default function ConnectWallet() {
   return (
     <Card title="Connect Adena Wallet">
       {isConnected && address && (
-        <Info>
-          <StatusDot />
+        <Info role="status" aria-label={`Connected wallet address: ${address}`}>
+          <StatusDot aria-hidden="true" />
           {address}
         </Info>
       )}
-      <Button disabled={isConnected} onClick={handleConnect}>
+      <Button
+        disabled={isConnected}
+        onClick={handleConnect}
+        aria-label={isConnected ? "Wallet already connected" : "Connect Adena wallet"}
+      >
         Connect
       </Button>
     </Card>
