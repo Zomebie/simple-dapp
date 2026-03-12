@@ -1,4 +1,5 @@
 import { useWalletStore } from "../store/useWalletStore";
+import { connectWallet } from "../services/walletService";
 import Card from "./Card";
 import Button from "./Button";
 import styled from "styled-components";
@@ -30,25 +31,12 @@ export default function ConnectWallet() {
   const { isConnected, address, connect, setAddress } = useWalletStore();
 
   const handleConnect = async () => {
-    if (!window.adena) {
-      alert("Please install Adena wallet extension.");
-      return;
-    }
-
     try {
-      const response = await window.adena.AddEstablish("Adena Wallet Integration");
-      if (
-        response.status === "success" ||
-        response.type === "ALREADY_CONNECTED"
-      ) {
-        const account = await window.adena.GetAccount();
-        if (account.status === "success") {
-          connect();
-          setAddress(account.data.address);
-        }
-      }
-    } catch {
-      console.error("Failed to connect wallet");
+      const addr = await connectWallet();
+      connect();
+      setAddress(addr);
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Failed to connect wallet");
     }
   };
 

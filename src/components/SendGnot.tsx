@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useWalletStore } from "../store/useWalletStore";
+import { sendGnot } from "../services/walletService";
 import Card from "./Card";
 import Button from "./Button";
 import styled from "styled-components";
@@ -42,35 +43,12 @@ export default function SendGnot() {
   const [amount, setAmount] = useState("");
 
   const handleSend = async () => {
-    if (!window.adena) return;
-
     try {
-      const account = await window.adena.GetAccount();
-      if (account.status !== "success") throw new Error("Failed to get account");
-
-      const response = await window.adena.DoContract({
-        messages: [
-          {
-            type: "/bank.MsgSend",
-            value: {
-              from_address: account.data.address,
-              to_address: toAddress,
-              amount: `${amount}ugnot`,
-            },
-          },
-        ],
-        gasFee: 1,
-        gasWanted: 10000000,
-      });
-
-      if (response.status === "success") {
-        addToast("success", response.data?.hash ?? null);
-      } else {
-        addToast("failed", response.data?.hash ?? null);
-      }
+      const result = await sendGnot(toAddress, amount);
+      addToast(result.status, result.txHash);
     } catch (error) {
       console.error(error);
-      addToast("failed", error instanceof Error ? error.message : null);
+      addToast("failed", null);
     }
   };
 

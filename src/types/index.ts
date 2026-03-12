@@ -1,4 +1,4 @@
-export interface AdenaResponse<T = unknown> {
+export interface Response<T = unknown> {
   code: number;
   status: "success" | "failure";
   type: string;
@@ -6,17 +6,17 @@ export interface AdenaResponse<T = unknown> {
   data: T;
 }
 
-export interface AccountData {
+export interface Account {
   accountNumber: string;
   address: string;
   coins: string;
   chainId: string;
   sequence: string;
   status: string;
-  publicKey: { "@type": string; value: string } | null;
+  publicKey: { "@type": string; value: string };
 }
 
-export interface TransactionData {
+export interface Transaction {
   hash: string;
   height: string;
   checkTx: Record<string, unknown>;
@@ -25,18 +25,18 @@ export interface TransactionData {
 
 export interface DoContractParams {
   messages: Array<{
-    type: string;
-    value: Record<string, string>;
+    type: "/bank.MsgSend" | "/vm.m_call" | "/vm.m_addpkg" | "/vm.m_run",
+    value:{ [key: string]: unknown}
   }>;
-  gasFee: number;
-  gasWanted: number;
+  tx:Transaction;
   memo?: string;
+  isNotification?: boolean;
 }
 
 export interface AdenaWallet {
-  AddEstablish: (name: string) => Promise<AdenaResponse>;
-  GetAccount: () => Promise<AdenaResponse<AccountData>>;
-  DoContract: (params: DoContractParams) => Promise<AdenaResponse<TransactionData>>;
+  AddEstablish: (name: string) => Promise<Response>;
+  GetAccount: () => Promise<Response<Account>>;
+  DoContract: (params: DoContractParams) => Promise<Response<Transaction>>;
 }
 
 declare global {

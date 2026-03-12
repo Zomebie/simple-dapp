@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useWalletStore } from "../store/useWalletStore";
+import { getAddress } from "../services/walletService";
 import Card from "./Card";
 import Button from "./Button";
 import styled from "styled-components";
@@ -21,13 +22,8 @@ export default function GetAddress() {
   const [address, setAddress] = useState<string | null>(null);
 
   const handleGetAddress = async () => {
-    if (!window.adena) return;
-
     try {
-      const account = await window.adena.GetAccount();
-      if (account.status === "success") {
-        setAddress(account.data.address);
-      }
+      setAddress(await getAddress());
     } catch {
       console.error("Failed to get address");
     }

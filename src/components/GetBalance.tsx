@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useWalletStore } from "../store/useWalletStore";
+import { getBalance } from "../services/walletService";
 import Card from "./Card";
 import Button from "./Button";
 import styled from "styled-components";
@@ -20,13 +21,8 @@ export default function GetBalance() {
   const [balance, setBalance] = useState<string | null>(null);
 
   const handleGetBalance = async () => {
-    if (!window.adena) return;
-
     try {
-      const account = await window.adena.GetAccount();
-      if (account.status === "success") {
-        setBalance(account.data.coins);
-      }
+      setBalance(await getBalance());
     } catch {
       console.error("Failed to get balance");
     }
