@@ -50,7 +50,7 @@ const Status = styled.div`
   letter-spacing: -0.01em;
 `;
 
-const Hash = styled.div`
+const Message = styled.div`
   font-size: 11px;
   word-break: break-all;
   opacity: 0.85;
@@ -70,7 +70,7 @@ export default function ToastContainer() {
           <Status>
             {toast.status === "success" ? "Transaction Success" : "Transaction Failed"}
           </Status>
-          <Hash>txHash: {toast.message}</Hash>
+          <Message>{toast.message}</Message>
         </ToastItem>
       ))}
     </Wrapper>
