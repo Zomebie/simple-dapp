@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useWalletStore } from "../store/useWalletStore";
-import { sendGnot } from "../services/walletService";
+import { useWalletStore } from "../store/wallet";
+import { sendGnot } from "../services/wallet";
 import Card from "./Card";
 import Button from "./Button";
 import styled from "styled-components";

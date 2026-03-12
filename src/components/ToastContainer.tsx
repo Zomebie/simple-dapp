@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { useWalletStore } from "../store/useWalletStore";
+import { useWalletStore } from "../store/wallet";
 
 const slideIn = keyframes`
   from {

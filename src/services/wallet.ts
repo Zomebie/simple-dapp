@@ -1,4 +1,4 @@
-import * as adenaApi from "@/api/adena";
+import * as adenaApi from "@/api/wallet";
 
 const SITE_NAME = "Adena Wallet Integration";
 

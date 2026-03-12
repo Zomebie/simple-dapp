@@ -1,5 +1,5 @@
-import { useWalletStore } from "../store/useWalletStore";
-import { connectWallet } from "../services/walletService";
+import { useWalletStore } from "../store/wallet";
+import { connectWallet } from "../services/wallet";
 import Card from "./Card";
 import Button from "./Button";
 import styled from "styled-components";

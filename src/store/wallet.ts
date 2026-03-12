@@ -3,7 +3,7 @@ import { create } from "zustand";
 interface Toast {
   id: number;
   status: "success" | "failed";
-  txHash: string | null;
+  message: string | null;
 }
 
 interface WalletState {
@@ -14,7 +14,7 @@ interface WalletState {
   connect: () => void;
   setAddress: (address: string | null) => void;
   setBalance: (balance: string | null) => void;
-  addToast: (status: "success" | "failed", txHash: string | null) => void;
+  addToast: (status: "success" | "failed", message: string | null) => void;
   removeToast: (id: number) => void;
 }
 
@@ -32,10 +32,10 @@ export const useWalletStore = create<WalletState>((set) => ({
 
   setBalance: (balance) => set({ balance }),
 
-  addToast: (status, txHash) => {
+  addToast: (status, message) => {
     const id = ++toastId;
     set((state) => ({
-      toasts: [...state.toasts, { id, status, txHash }],
+      toasts: [...state.toasts, { id, status, message }],
     }));
     setTimeout(() => {
       set((state) => ({

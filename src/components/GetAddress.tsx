@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useWalletStore } from "../store/useWalletStore";
-import { getAddress } from "../services/walletService";
+import { useWalletStore } from "../store/wallet";
+import { getAddress } from "../services/wallet";
 import Card from "./Card";
 import Button from "./Button";
 import styled from "styled-components";
