@@ -67,9 +67,7 @@ export default function ToastContainer() {
     <Wrapper role="region" aria-label="Notifications" aria-live="polite">
       {toasts.map((toast) => (
         <ToastItem key={toast.id} $success={toast.status === "success"} role="alert">
-          <Status>
-            {toast.status === "success" ? "Transaction Success" : "Transaction Failed"}
-          </Status>
+          <Status>{toast.title}</Status>
           <Message>{toast.message}</Message>
         </ToastItem>
       ))}
