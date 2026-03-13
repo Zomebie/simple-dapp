@@ -16,6 +16,13 @@ const Info = styled.div`
   line-height: 1.5;
 `;
 
+const HelpText = styled.p`
+  font-size: 12px;
+  color: #86868b;
+  margin: 0;
+  line-height: 1.6;
+`;
+
 export default function GetBalance() {
   const { isConnected, addToast } = useWalletStore();
   const [balance, setBalance] = useState<string | null>(null);
@@ -37,6 +44,11 @@ export default function GetBalance() {
           {balance}
         </Info>
       )}
+      <HelpText>
+        Balance is displayed in <strong>ugnot</strong> (micro GNOT).
+        <br />
+        1 GNOT = 1,000,000 ugnot
+      </HelpText>
       <Button disabled={!isConnected} onClick={handleGetBalance} aria-label="Get account balance">
         Get Balance
       </Button>
