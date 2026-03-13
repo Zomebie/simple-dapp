@@ -39,10 +39,12 @@ interface CardProps {
 }
 
 export default function Card({ title, children }: CardProps) {
+  const cardId = `card-${title.replaceAll(/\s+/g, "-").toLowerCase()}`;
+
   return (
-    <CardWrapper aria-labelledby={`card-${title.replaceAll(/\s+/g, "-").toLowerCase()}`}>
+    <CardWrapper aria-labelledby={cardId}>
       <CardHeader>
-        <CardTitle id={`card-${title.replaceAll(/\s+/g, "-").toLowerCase()}`}>{title}</CardTitle>
+        <CardTitle id={cardId}>{title}</CardTitle>
       </CardHeader>
       <CardBody>{children}</CardBody>
     </CardWrapper>
