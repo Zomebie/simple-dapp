@@ -37,7 +37,11 @@ export default function ConnectWallet() {
       setAddress(addr);
     } catch (error) {
       console.error(error);
-      addToast("failed", error instanceof Error ? error.message : "Failed to connect wallet");
+      addToast({
+        title: "Connect Wallet",
+        status: "failed",
+        message: error instanceof Error ? error.message : "Failed to connect wallet",
+      });
     }
   };
 

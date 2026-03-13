@@ -1,4 +1,5 @@
 import * as adenaApi from "@/api/wallet";
+import { formatBalance } from "@/utils/format";
 
 const SITE_NAME = "Adena Wallet Integration";
 
@@ -30,7 +31,7 @@ export async function getBalance(): Promise<string> {
   if (account.status !== "success") {
     throw new Error(account.message || "Failed to get account");
   }
-  return account.data.coins;
+  return formatBalance(account.data.coins);
 }
 
 export interface SendGnotResult {

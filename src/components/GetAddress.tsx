@@ -27,7 +27,7 @@ export default function GetAddress() {
       setAddress(addr);
     } catch (error) {
       console.error(error);
-      addToast("failed", error instanceof Error ? error.message : "Failed to get address");
+      addToast({ title: "Get Address", status: "failed", message: error instanceof Error ? error.message : "Failed to get address" });
     }
   };
 

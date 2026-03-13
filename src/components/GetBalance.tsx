@@ -26,7 +26,7 @@ export default function GetBalance() {
       setBalance(bal);
     } catch (error) {
       console.error(error);
-      addToast("failed", error instanceof Error ? error.message : "Failed to get balance");
+      addToast({ title: "Get Balance", status: "failed", message: error instanceof Error ? error.message : "Failed to get balance" });
     }
   };
 

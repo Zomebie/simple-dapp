@@ -111,13 +111,17 @@ export default function SendGnot() {
   const onSubmit = async (data: SendFormValues) => {
     try {
       const result = await sendGnot(data.toAddress, data.amount);
-      addToast(result.status, result.txHash);
+      addToast({ title: "Transaction Success", status: result.status, message: result.txHash });
       if (result.status === "success") {
         reset();
       }
     } catch (error) {
       console.error(error);
-      addToast("failed", error instanceof Error ? error.message : "Failed to send GNOT");
+      addToast({
+        title: "Transaction Failed",
+        status: "failed",
+        message: error instanceof Error ? error.message : "Failed to send GNOT",
+      });
     }
   };
 
