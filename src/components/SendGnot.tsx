@@ -111,10 +111,12 @@ export default function SendGnot() {
   const onSubmit = async (data: SendFormValues) => {
     try {
       const result = await sendGnot(data.toAddress, data.amount);
+      if (result.status !== "success") throw new Error("Failed to send GNOT");
+
       addToast({
         title: "Transaction Success",
         status: result.status,
-        message: result.txHash ?? "-",
+        message: "txHash: " + (result.txHash ?? "-"),
       });
       if (result.status === "success") {
         reset();
