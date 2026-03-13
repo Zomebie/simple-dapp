@@ -3,18 +3,8 @@ import { useWalletStore } from "../store/wallet";
 import { getBalance } from "../services/wallet";
 import Card from "./common/Card";
 import Button from "./common/Button";
+import InfoBox from "./common/InfoBox";
 import styled from "styled-components";
-
-const Info = styled.div`
-  font-size: 13px;
-  margin: 0;
-  background: #f5f5f7;
-  padding: 12px 16px;
-  border-radius: 10px;
-  color: #1d1d1f;
-  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
-  line-height: 1.5;
-`;
 
 const HelpText = styled.p`
   font-size: 12px;
@@ -40,9 +30,9 @@ export default function GetBalance() {
   return (
     <Card title="Get Balance">
       {balance !== null && (
-        <Info role="status" aria-label={`Account balance: ${balance}`}>
+        <InfoBox role="status" aria-label={`Account balance: ${balance}`}>
           {balance}
-        </Info>
+        </InfoBox>
       )}
       <HelpText>
         Balance is displayed in <strong>ugnot</strong> (micro GNOT).

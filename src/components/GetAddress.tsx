@@ -3,19 +3,7 @@ import { useWalletStore } from "../store/wallet";
 import { getAddress } from "../services/wallet";
 import Card from "./common/Card";
 import Button from "./common/Button";
-import styled from "styled-components";
-
-const Info = styled.div`
-  font-size: 13px;
-  margin: 0;
-  word-break: break-all;
-  background: #f5f5f7;
-  padding: 12px 16px;
-  border-radius: 10px;
-  color: #1d1d1f;
-  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
-  line-height: 1.5;
-`;
+import InfoBox from "./common/InfoBox";
 
 export default function GetAddress() {
   const { isConnected, addToast } = useWalletStore();
@@ -34,9 +22,9 @@ export default function GetAddress() {
   return (
     <Card title="Get Gno.land Address">
       {address && (
-        <Info role="status" aria-label={`Gno.land address: ${address}`}>
+        <InfoBox role="status" aria-label={`Gno.land address: ${address}`}>
           {address}
-        </Info>
+        </InfoBox>
       )}
       <Button disabled={!isConnected} onClick={handleGetAddress} aria-label="Get Gno.land address">
         Get Address

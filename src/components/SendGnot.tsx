@@ -49,7 +49,7 @@ const InputWrapper = styled.div<{ $hasError?: boolean }>`
 
 const Input = styled.input`
   width: 100%;
-  font-size: 14px;
+  font-size: 12px;
   padding: 12px 14px;
   border: none;
   border-radius: 12px;
