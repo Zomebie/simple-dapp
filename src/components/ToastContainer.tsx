@@ -33,8 +33,7 @@ const ToastItem = styled.div<{ $success: boolean }>`
   padding: 14px 18px;
   border-radius: 14px;
   font-size: 14px;
-  min-width: 300px;
-  max-width: 380px;
+  width: 380px;
   box-shadow:
     0 4px 16px ${({ $success }) => ($success ? "rgba(48, 209, 88, 0.3)" : "rgba(255, 69, 58, 0.3)")},
     0 1px 3px rgba(0, 0, 0, 0.08);
