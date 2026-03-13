@@ -3,30 +3,26 @@ import styled from "styled-components";
 const CardWrapper = styled.section`
   border-radius: 16px;
   overflow: hidden;
-  background: #ffffff;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.04),
-    0 4px 12px rgba(0, 0, 0, 0.03);
+  background: ${({ theme }) => theme.colors.surface};
+  box-shadow: ${({ theme }) => theme.shadows.card};
   transition: box-shadow 0.3s ease;
 
   &:hover {
-    box-shadow:
-      0 2px 8px rgba(0, 0, 0, 0.06),
-      0 8px 24px rgba(0, 0, 0, 0.05);
+    box-shadow: ${({ theme }) => theme.shadows.cardHover};
   }
 `;
 
 const CardHeader = styled.div`
-  background-color: #f2f2f6;
+  background-color: ${({ theme }) => theme.colors.surfaceSecondary};
   padding: 16px 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 const CardTitle = styled.h2`
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.fontSizes.cardTitle};
   font-weight: 600;
   margin: 0;
-  color: #1d1d1f;
+  color: ${({ theme }) => theme.colors.text};
   letter-spacing: -0.02em;
 `;
 

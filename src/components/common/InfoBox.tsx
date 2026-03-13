@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 const InfoBox = styled.div`
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fontSizes.cardContent};
   margin: 0;
   word-break: break-all;
-  background: #f5f5f7;
+  background: ${({ theme }) => theme.colors.background};
   padding: 12px 16px;
   border-radius: 10px;
-  color: #1d1d1f;
-  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
+  color: ${({ theme }) => theme.colors.text};
+  font-family: ${({ theme }) => theme.fonts.mono};
   line-height: 1.5;
 `;
 

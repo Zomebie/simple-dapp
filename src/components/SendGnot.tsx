@@ -24,42 +24,39 @@ const FieldGroup = styled.fieldset`
 const Label = styled.label`
   font-size: 13px;
   font-weight: 500;
-  color: #86868b;
+  color: ${({ theme }) => theme.colors.textSecondary};
   letter-spacing: -0.01em;
 `;
-
-const focusShadow = (hasError?: boolean) =>
-  hasError ? "0 0 0 3px rgba(255, 69, 58, 0.12)" : "0 0 0 3px rgba(44, 75, 226, 0.1)";
 
 const InputWrapper = styled.div<{ $hasError?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
-  background: #f5f5f7;
-  border: 1.5px solid ${({ $hasError }) => ($hasError ? "#ff453a" : "transparent")};
+  background: ${({ theme }) => theme.colors.background};
+  border: 1.5px solid ${({ $hasError, theme }) => ($hasError ? theme.colors.error : "transparent")};
   border-radius: 12px;
   transition: all 0.2s ease;
 
   &:focus-within {
-    background: #fff;
-    border-color: ${({ $hasError }) => ($hasError ? "#ff453a" : "#2c4be2")};
-    box-shadow: ${({ $hasError }) => focusShadow($hasError)};
+    background: ${({ theme }) => theme.colors.surface};
+    border-color: ${({ $hasError, theme }) => ($hasError ? theme.colors.error : theme.colors.primary)};
+    box-shadow: ${({ $hasError, theme }) => ($hasError ? theme.shadows.focusError : theme.shadows.focusPrimary)};
   }
 `;
 
 const Input = styled.input`
   width: 100%;
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSizes.input};
   padding: 12px 14px;
   border: none;
   border-radius: 12px;
   outline: none;
   background: transparent;
-  color: #1d1d1f;
-  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
+  color: ${({ theme }) => theme.colors.text};
+  font-family: ${({ theme }) => theme.fonts.mono};
 
   &::placeholder {
-    color: #aeaeb2;
+    color: ${({ theme }) => theme.colors.textPlaceholder};
   }
 
   &::-webkit-outer-spin-button,
@@ -71,7 +68,7 @@ const Input = styled.input`
 
 const Suffix = styled.span`
   font-size: 12px;
-  color: #86868b;
+  color: ${({ theme }) => theme.colors.textSecondary};
   padding-right: 14px;
   font-weight: 500;
   white-space: nowrap;
@@ -79,7 +76,7 @@ const Suffix = styled.span`
 
 const ErrorText = styled.span`
   font-size: 11px;
-  color: #ff453a;
+  color: ${({ theme }) => theme.colors.error};
   margin-top: 2px;
 `;
 

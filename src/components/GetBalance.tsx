@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 const HelpText = styled.p`
   font-size: 12px;
-  color: #86868b;
+  color: ${({ theme }) => theme.colors.textSecondary};
   margin: 0;
   line-height: 1.6;
 `;

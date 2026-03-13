@@ -1,27 +1,11 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
+import { theme } from "./styles/theme";
+import GlobalStyle from "./styles/GlobalStyle";
 import ConnectWallet from "./components/ConnectWallet";
 import GetAddress from "./components/GetAddress";
 import GetBalance from "./components/GetBalance";
 import SendGnot from "./components/SendGnot";
 import ToastContainer from "./components/ToastContainer";
-
-const GlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
-      'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: #f5f5f7;
-    color: #1d1d1f;
-    line-height: 1.47059;
-    letter-spacing: -0.022em;
-  }
-`;
 
 const Page = styled.div`
   min-height: 100vh;
@@ -35,16 +19,16 @@ const HeaderWrapper = styled.header`
 `;
 
 const Title = styled.h1`
-  font-size: 24px;
+  font-size: ${({ theme }) => theme.fontSizes.header};
   font-weight: 700;
   margin: 0;
-  color: #1d1d1f;
+  color: ${({ theme }) => theme.colors.text};
   letter-spacing: -0.03em;
 `;
 
 const Subtitle = styled.p`
   font-size: 14px;
-  color: #86868b;
+  color: ${({ theme }) => theme.colors.textSecondary};
   margin: 6px 0 0;
   font-weight: 400;
 `;
@@ -63,7 +47,7 @@ const CardList = styled.div`
 
 export default function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Page>
         <HeaderWrapper>
@@ -80,6 +64,6 @@ export default function App() {
         </Main>
       </Page>
       <ToastContainer />
-    </>
+    </ThemeProvider>
   );
 }
