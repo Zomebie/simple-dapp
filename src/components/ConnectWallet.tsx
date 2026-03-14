@@ -11,7 +11,7 @@ const StatusDot = styled.span`
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.successDot};
+  background-color: ${({ theme }) => theme.colors.success};
   margin-right: 8px;
   vertical-align: middle;
 `;

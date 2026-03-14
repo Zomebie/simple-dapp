@@ -9,9 +9,9 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: ${({ theme }) => theme.fonts.sans};
-    background-color: ${({ theme }) => theme.colors.background};
-    color: ${({ theme }) => theme.colors.text};
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f5f5f7;
+    color: #1d1d1f;
     line-height: 1.47059;
     letter-spacing: -0.022em;
   }

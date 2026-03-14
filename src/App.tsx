@@ -19,16 +19,16 @@ const HeaderWrapper = styled.header`
 `;
 
 const Title = styled.h1`
-  font-size: ${({ theme }) => theme.fontSizes.header};
+  font-size: 24px;
   font-weight: 700;
   margin: 0;
-  color: ${({ theme }) => theme.colors.text};
+  color: #1d1d1f;
   letter-spacing: -0.03em;
 `;
 
 const Subtitle = styled.p`
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.textSecondary};
+  color: #86868b;
   margin: 6px 0 0;
   font-weight: 400;
 `;

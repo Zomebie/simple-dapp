@@ -30,16 +30,18 @@ const Wrapper = styled.div`
 const ToastItem = styled.div<{ $success: boolean }>`
   background: ${({ $success, theme }) =>
     $success
-      ? `linear-gradient(135deg, ${theme.colors.success}, ${theme.colors.successDark})`
-      : `linear-gradient(135deg, ${theme.colors.error}, ${theme.colors.errorDark})`};
-  color: ${({ theme }) => theme.colors.surface};
+      ? `linear-gradient(135deg, ${theme.colors.success}, #28bd4e)`
+      : `linear-gradient(135deg, ${theme.colors.error}, #e8352c)`};
+  color: #ffffff;
   padding: 14px 18px;
   border-radius: 14px;
   font-size: 14px;
   width: 380px;
   max-width: calc(100vw - 40px);
-  box-shadow: ${({ $success, theme }) =>
-    $success ? theme.shadows.toast.success : theme.shadows.toast.error};
+  box-shadow: ${({ $success }) =>
+    $success
+      ? "0 4px 16px rgba(48, 209, 88, 0.3), 0 1px 3px rgba(0, 0, 0, 0.08)"
+      : "0 4px 16px rgba(255, 69, 58, 0.3), 0 1px 3px rgba(0, 0, 0, 0.08)"};
   animation: ${slideIn} 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -56,7 +58,7 @@ const Message = styled.div`
   font-size: 11px;
   word-break: break-all;
   opacity: 0.85;
-  font-family: ${({ theme }) => theme.fonts.mono};
+  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
   line-height: 1.4;
 `;
 

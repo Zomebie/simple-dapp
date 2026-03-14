@@ -24,7 +24,7 @@ const FieldGroup = styled.fieldset`
 const Label = styled.label`
   font-size: 13px;
   font-weight: 500;
-  color: ${({ theme }) => theme.colors.textSecondary};
+  color: #86868b;
   letter-spacing: -0.01em;
 `;
 
@@ -32,31 +32,32 @@ const InputWrapper = styled.div<{ $hasError?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.colors.background};
+  background: #f5f5f7;
   border: 1.5px solid ${({ $hasError, theme }) => ($hasError ? theme.colors.error : "transparent")};
   border-radius: 12px;
   transition: all 0.2s ease;
 
   &:focus-within {
-    background: ${({ theme }) => theme.colors.surface};
-    border-color: ${({ $hasError, theme }) => ($hasError ? theme.colors.error : theme.colors.primary)};
-    box-shadow: ${({ $hasError, theme }) => ($hasError ? theme.shadows.focusError : theme.shadows.focusPrimary)};
+    background: #ffffff;
+    border-color: ${({ $hasError, theme }) => ($hasError ? theme.colors.error : "#2c4be2")};
+    box-shadow: ${({ $hasError }) =>
+      $hasError ? "0 0 0 3px rgba(255, 69, 58, 0.12)" : "0 0 0 3px rgba(44, 75, 226, 0.1)"};
   }
 `;
 
 const Input = styled.input`
   width: 100%;
-  font-size: ${({ theme }) => theme.fontSizes.input};
+  font-size: 12px;
   padding: 12px 14px;
   border: none;
   border-radius: 12px;
   outline: none;
   background: transparent;
-  color: ${({ theme }) => theme.colors.text};
-  font-family: ${({ theme }) => theme.fonts.mono};
+  color: #1d1d1f;
+  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.textPlaceholder};
+    color: #aeaeb2;
   }
 
   &::-webkit-outer-spin-button,
@@ -68,7 +69,7 @@ const Input = styled.input`
 
 const Suffix = styled.span`
   font-size: 12px;
-  color: ${({ theme }) => theme.colors.textSecondary};
+  color: #86868b;
   padding-right: 14px;
   font-weight: 500;
   white-space: nowrap;
@@ -172,7 +173,6 @@ export default function SendGnot() {
                 validate: {
                   positive: (v) => Number(v) > 0 || "Must be greater than 0",
                   integer: (v) => Number.isInteger(Number(v)) || "Must be a whole number",
-                  // maxAmount: (v) => Number(v) <= 1_000_000_000 || "Exceeds maximum amount",
                 },
               })}
             />

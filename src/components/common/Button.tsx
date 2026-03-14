@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSizes.button};
+  font-size: 16px;
   font-weight: 500;
   padding: 12px 24px;
   border: none;
   border-radius: 12px;
-  color: ${({ theme }) => theme.colors.surface};
+  color: #ffffff;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.active};
   transition: all 0.2s ease;
   letter-spacing: -0.01em;
   position: relative;
@@ -21,7 +21,7 @@ const StyledButton = styled.button`
 
   &:not(:disabled):hover {
     transform: scale(1.01);
-    background-color: ${({ theme }) => theme.colors.primaryHover};
+    background-color: #2440c8;
   }
 
   &:not(:disabled):active {
@@ -29,7 +29,7 @@ const StyledButton = styled.button`
   }
 
   &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.colors.primary};
+    outline: 2px solid ${({ theme }) => theme.colors.active};
     outline-offset: 2px;
   }
 `;
@@ -38,7 +38,7 @@ interface ButtonProps extends Readonly<{
   children: React.ReactNode;
   disabled?: boolean;
   onClick?: () => void;
-  type?: "button" | "submit" | "reset";
+  type?: "button" | "submit";
   "aria-label"?: string;
 }> {}
 

@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 const InfoBox = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.infoBox};
+  font-size: 16px;
   margin: 0;
   word-break: break-all;
-  background: ${({ theme }) => theme.colors.background};
+  background: #f5f5f7;
   padding: 12px 16px;
   border-radius: 10px;
-  color: ${({ theme }) => theme.colors.text};
-  font-family: ${({ theme }) => theme.fonts.mono};
+  color: #1d1d1f;
+  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
   line-height: 1.5;
 `;
 
