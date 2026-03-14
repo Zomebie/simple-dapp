@@ -10,8 +10,6 @@ const StyledButton = styled.button`
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.active};
   transition: all 0.2s ease;
-  letter-spacing: -0.01em;
-  position: relative;
   overflow: hidden;
 
   &:disabled {
@@ -50,12 +48,7 @@ export default function Button({
   "aria-label": ariaLabel,
 }: ButtonProps) {
   return (
-    <StyledButton
-      disabled={disabled}
-      onClick={onClick}
-      type={type}
-      aria-label={ariaLabel}
-    >
+    <StyledButton disabled={disabled} onClick={onClick} type={type} aria-label={ariaLabel}>
       {children}
     </StyledButton>
   );
