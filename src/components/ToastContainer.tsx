@@ -34,6 +34,7 @@ const ToastItem = styled.div<{ $success: boolean }>`
   border-radius: 14px;
   font-size: 14px;
   width: 380px;
+  max-width: calc(100vw - 40px);
   box-shadow: ${({ $success, theme }) =>
     $success ? theme.shadows.toast.success : theme.shadows.toast.error};
   animation: ${slideIn} 0.35s cubic-bezier(0.16, 1, 0.3, 1);

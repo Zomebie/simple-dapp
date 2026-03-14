@@ -40,6 +40,7 @@ export const theme = {
     header: "24px",
     cardTitle: "20px",
     cardContent: "16px",
+    infoBox: "13px",
     input: "12px",
     button: "16px",
   },

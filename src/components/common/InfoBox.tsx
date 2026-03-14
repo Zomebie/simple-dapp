@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const InfoBox = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.cardContent};
+  font-size: ${({ theme }) => theme.fontSizes.infoBox};
   margin: 0;
   word-break: break-all;
   background: ${({ theme }) => theme.colors.background};
