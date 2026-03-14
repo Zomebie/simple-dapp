@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  z-index: 1000;
+  z-index: 1;
 `;
 
 const ToastItem = styled.div<{ $success: boolean }>`
