@@ -37,7 +37,7 @@ const InputWrapper = styled.div<{ $hasError?: boolean }>`
 
   &:focus-within {
     background: #ffffff;
-    border-color: ${({ $hasError, theme }) => ($hasError ? theme.colors.error : "#2c4be2")};
+    border-color: ${({ $hasError, theme }) => ($hasError ? theme.colors.error : theme.colors.active)};
     box-shadow: ${({ $hasError }) =>
       $hasError ? "0 0 0 3px rgba(255, 69, 58, 0.12)" : "0 0 0 3px rgba(44, 75, 226, 0.1)"};
   }

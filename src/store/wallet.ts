@@ -19,8 +19,6 @@ interface WalletState {
 
 export const useWalletStore = create<WalletState>((set) => ({
   isConnected: false,
-  address: null,
-  balance: null,
   toasts: [],
 
   setIsConnected: (isConnected) => set({ isConnected }),
