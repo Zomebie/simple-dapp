@@ -7,6 +7,7 @@ const CardWrapper = styled.section`
     0 1px 3px rgba(0, 0, 0, 0.04),
     0 4px 12px rgba(0, 0, 0, 0.03);
   transition: box-shadow 0.3s ease;
+  overflow: hidden;
 `;
 
 const CardHeader = styled.div`

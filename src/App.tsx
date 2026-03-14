@@ -14,7 +14,6 @@ const Page = styled.div`
   gap: 3rem;
   min-height: 100vh;
   padding: 60px;
-  background-color: #f5f5f7;
   color: #1d1d1f;
   line-height: 1.47059;
   letter-spacing: -0.022em;
