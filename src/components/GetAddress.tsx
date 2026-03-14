@@ -22,7 +22,7 @@ export default function GetAddress() {
   return (
     <Card title="Get Gno.land Address">
       {address && (
-        <InfoBox role="status" aria-label={`Gno.land address: ${address}`}>
+        <InfoBox aria-label={`Gno.land address: ${address}`}>
           {address}
         </InfoBox>
       )}

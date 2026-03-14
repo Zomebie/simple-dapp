@@ -30,7 +30,7 @@ export default function GetBalance() {
   return (
     <Card title="Get Balance">
       {balance !== null && (
-        <InfoBox role="status" aria-label={`Account balance: ${balance}`}>
+        <InfoBox aria-label={`Account balance: ${balance}`}>
           {balance}
         </InfoBox>
       )}

@@ -38,7 +38,7 @@ export default function ConnectWallet() {
   return (
     <Card title="Connect Adena Wallet">
       {isConnected && address && (
-        <InfoBox role="status" aria-label={`Connected wallet address: ${address}`}>
+        <InfoBox aria-label={`Connected wallet address: ${address}`}>
           <StatusDot aria-hidden="true" />
           {address}
         </InfoBox>

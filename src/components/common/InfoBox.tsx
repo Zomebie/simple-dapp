@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const InfoBox = styled.div`
+const InfoBox = styled.output`
   font-size: 16px;
   margin: 0;
   word-break: break-all;
