@@ -78,10 +78,10 @@ src/
 
 [Zustand](https://github.com/pmndrs/zustand)를 사용하여 전역 상태를 관리합니다.
 
-| 상태 | 타입 | 설명 |
-|---|---|---|
+| 상태          | 타입      | 설명                                     |
+| ------------- | --------- | ---------------------------------------- |
 | `isConnected` | `boolean` | 지갑 연결 여부 (버튼 활성화 조건에 사용) |
-| `toasts` | `Toast[]` | 트랜잭션 결과 Toast 목록 (3초 후 자동 제거) |
+| `toasts`      | `Toast[]` | 트랜잭션 결과 Toast 목록                 |
 
 - **Client State**: 지갑 연결 상태, Toast 알림 → Zustand store
 - **Server State**: 주소, 잔액 → 컴포넌트 로컬 state + Adena API를 통해 조회 (버튼 클릭 시 fetch)
@@ -90,14 +90,14 @@ src/
 
 시맨틱 디자인 토큰만 최소한으로 정의하여 전역 일관성을 유지합니다.
 
-| 토큰 | 값 | 용도 |
-|---|---|---|
-| `colors.active` | `#2c4be2` | 주요 버튼, 포커스 보더 |
-| `colors.activeHover` | `#2440c8` | 버튼 호버 |
-| `colors.disabled` | `#808080` | 비활성 상태 |
-| `colors.success` | `#30d158` | 성공 Toast, 연결 상태 표시 |
-| `colors.error` | `#ff453a` | 에러 Toast, 폼 유효성 검증 |
-| `fonts.sans` | 시스템 폰트 스택 | GlobalStyle에서 전역 폰트로 사용 |
+| 토큰                 | 값               | 용도                             |
+| -------------------- | ---------------- | -------------------------------- |
+| `colors.active`      | `#2c4be2`        | 주요 버튼, 포커스 보더           |
+| `colors.activeHover` | `#2440c8`        | 버튼 호버                        |
+| `colors.disabled`    | `#808080`        | 비활성 상태                      |
+| `colors.success`     | `#30d158`        | 성공 Toast, 연결 상태 표시       |
+| `colors.error`       | `#ff453a`        | 에러 Toast, 폼 유효성 검증       |
+| `fonts.sans`         | 시스템 폰트 스택 | GlobalStyle에서 전역 폰트로 사용 |
 
 ## Accessibility
 
@@ -129,12 +129,12 @@ src/
 
 ## Libraries
 
-| 라이브러리 | 용도 |
-|---|---|
-| **React 19** | UI 프레임워크 |
-| **TypeScript** | 타입 안전성 |
-| **Vite 7** | 빌드 도구 |
-| **Zustand** | 경량 전역 상태 관리 |
-| **styled-components v6** | CSS-in-JS 스타일링 (자체 타입 내장) |
-| **react-hook-form** | Send GNOT 폼 상태 관리 & 유효성 검증 |
-| **ESLint + Prettier** | 코드 린팅 & 포맷팅 |
+| 라이브러리               | 용도                                 |
+| ------------------------ | ------------------------------------ |
+| **React 19**             | UI 프레임워크                        |
+| **TypeScript**           | 타입 안전성                          |
+| **Vite 7**               | 빌드 도구                            |
+| **Zustand**              | 경량 전역 상태 관리                  |
+| **styled-components v6** | CSS-in-JS 스타일링 (자체 타입 내장)  |
+| **react-hook-form**      | Send GNOT 폼 상태 관리 & 유효성 검증 |
+| **ESLint + Prettier**    | 코드 린팅 & 포맷팅                   |
