@@ -1,5 +1,7 @@
 import { create } from "zustand";
 
+let toastId = 0;
+
 interface Toast {
   id: number;
   status: "success" | "failed";
@@ -31,7 +33,7 @@ export const useWalletStore = create<WalletState>((set) => ({
   setBalance: (balance) => set({ balance }),
 
   addToast: ({ title, status, message }) => {
-    const id = Date.now();
+    const id = ++toastId;
     set((state) => ({
       toasts: [...state.toasts, { id, title, status, message }],
     }));
