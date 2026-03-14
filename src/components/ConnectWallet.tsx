@@ -4,6 +4,7 @@ import Card from "./common/Card";
 import Button from "./common/Button";
 import InfoBox from "./common/InfoBox";
 import styled from "styled-components";
+import { useState } from "react";
 
 const StatusDot = styled.span`
   display: inline-block;
@@ -16,13 +17,14 @@ const StatusDot = styled.span`
 `;
 
 export default function ConnectWallet() {
-  const { isConnected, address, setIsConnected, setAddress, addToast } = useWalletStore();
+  const { isConnected, setIsConnected, addToast } = useWalletStore();
+  const [address, setAddress] = useState<string>();
 
   const handleConnect = async () => {
     try {
       const addr = await connectWallet();
-      setIsConnected(true);
       setAddress(addr);
+      setIsConnected(true);
     } catch (error) {
       console.error(error);
       addToast({
