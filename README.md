@@ -31,7 +31,7 @@ npm run format
 
 ```
 View Layer (components)  →  Business Layer (services)  →  Data Layer (api)
-    UI 렌더링 & 이벤트         비즈니스 로직 & 데이터 가공       Adena API 호출
+  UI 렌더링 & 이벤트 핸들링        비즈니스 로직 & 데이터 가공         Adena API 호출
 ```
 
 - **View Layer**: 사용자 인터랙션 처리, 서비스 호출, 결과 렌더링만 담당
