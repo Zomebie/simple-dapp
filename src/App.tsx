@@ -8,14 +8,20 @@ import SendGnot from "./components/SendGnot";
 import ToastContainer from "./components/ToastContainer";
 
 const Page = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
   min-height: 100vh;
-  padding-bottom: 60px;
+  padding: 60px;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+  line-height: 1.47059;
+  letter-spacing: -0.022em;
 `;
 
-const HeaderWrapper = styled.header`
-  padding: 40px 20px 32px;
-  max-width: 680px;
-  margin: 0 auto;
+const Header = styled.header`
+  width: 680px;
 `;
 
 const Title = styled.h1`
@@ -24,25 +30,15 @@ const Title = styled.h1`
   margin: 0;
   color: #1d1d1f;
   letter-spacing: -0.03em;
-`;
-
-const Subtitle = styled.p`
-  font-size: 14px;
-  color: #86868b;
-  margin: 6px 0 0;
-  font-weight: 400;
+  text-align: center;
 `;
 
 const Main = styled.main`
-  max-width: 680px;
-  margin: 0 auto;
+  width: 680px;
   padding: 0 20px;
-`;
-
-const CardList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 2rem;
 `;
 
 export default function App() {
@@ -50,17 +46,14 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Page>
-        <HeaderWrapper>
-          <Title>Adena Wallet Integration</Title>
-          <Subtitle>Connect and interact with Gno.land blockchain</Subtitle>
-        </HeaderWrapper>
+        <Header>
+          <Title>Request to Gno.land via Adena wallet</Title>
+        </Header>
         <Main>
-          <CardList>
-            <ConnectWallet />
-            <GetAddress />
-            <GetBalance />
-            <SendGnot />
-          </CardList>
+          <ConnectWallet />
+          <GetAddress />
+          <GetBalance />
+          <SendGnot />
         </Main>
       </Page>
       <ToastContainer />
