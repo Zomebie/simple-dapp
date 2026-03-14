@@ -5,7 +5,7 @@ import { Card, Button, CardContent } from "./common";
 
 export default function GetAddress() {
   const { isConnected, addToast } = useWalletStore();
-  const [address, setAddress] = useState<string | null>(null);
+  const [address, setAddress] = useState<string>();
 
   const handleGetAddress = async () => {
     try {
@@ -23,7 +23,9 @@ export default function GetAddress() {
 
   return (
     <Card title="Get Gno.land Address">
-      {address && <CardContent aria-label={`Gno.land address: ${address}`}>{address}</CardContent>}
+      <CardContent aria-label={`Gno.land address: ${address}`}>
+        Address: {address ?? ""}
+      </CardContent>
       <Button disabled={!isConnected} onClick={handleGetAddress} aria-label="Get Gno.land address">
         Get Address
       </Button>
