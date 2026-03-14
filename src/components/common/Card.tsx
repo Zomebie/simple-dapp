@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const CardWrapper = styled.section`
+  flex: 1 0 500px;
   border-radius: 16px;
   background: #ffffff;
   box-shadow:

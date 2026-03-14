@@ -33,10 +33,8 @@ const Title = styled.h1`
 `;
 
 const Main = styled.main`
-  width: 680px;
-  padding: 0 20px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 2rem;
 `;
 
