@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useWalletStore } from "../store/wallet";
 import { getBalance } from "../services/wallet";
-import { Card, Button, InfoBox } from "./common";
+import { Card, Button, CardContent } from "./common";
 import styled from "styled-components";
 
 const HelpText = styled.p`
@@ -21,21 +21,22 @@ export default function GetBalance() {
       setBalance(bal);
     } catch (error) {
       console.error(error);
-      addToast({ title: "Get Balance", status: "failed", message: error instanceof Error ? error.message : "Failed to get balance" });
+      addToast({
+        title: "Get Balance",
+        status: "failed",
+        message: error instanceof Error ? error.message : "Failed to get balance",
+      });
     }
   };
 
   return (
     <Card title="Get Balance">
       {balance !== null && (
-        <InfoBox aria-label={`Account balance: ${balance}`}>
-          {balance}
-        </InfoBox>
+        <CardContent aria-label={`Account balance: ${balance}`}>{balance}</CardContent>
       )}
       <HelpText>
         Balance is displayed in <strong>ugnot</strong> (micro GNOT).
-        <br />
-        1 GNOT = 1,000,000 ugnot
+        <br />1 GNOT = 1,000,000 ugnot
       </HelpText>
       <Button disabled={!isConnected} onClick={handleGetBalance} aria-label="Get account balance">
         Get Balance

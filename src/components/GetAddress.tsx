@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useWalletStore } from "../store/wallet";
 import { getAddress } from "../services/wallet";
-import { Card, Button, InfoBox } from "./common";
+import { Card, Button, CardContent } from "./common";
 
 export default function GetAddress() {
   const { isConnected, addToast } = useWalletStore();
@@ -13,17 +13,17 @@ export default function GetAddress() {
       setAddress(addr);
     } catch (error) {
       console.error(error);
-      addToast({ title: "Get Address", status: "failed", message: error instanceof Error ? error.message : "Failed to get address" });
+      addToast({
+        title: "Get Address",
+        status: "failed",
+        message: error instanceof Error ? error.message : "Failed to get address",
+      });
     }
   };
 
   return (
     <Card title="Get Gno.land Address">
-      {address && (
-        <InfoBox aria-label={`Gno.land address: ${address}`}>
-          {address}
-        </InfoBox>
-      )}
+      {address && <CardContent aria-label={`Gno.land address: ${address}`}>{address}</CardContent>}
       <Button disabled={!isConnected} onClick={handleGetAddress} aria-label="Get Gno.land address">
         Get Address
       </Button>

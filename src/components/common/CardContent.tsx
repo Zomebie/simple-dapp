@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const InfoBox = styled.output`
+const CardContent = styled.output`
   font-size: 16px;
   margin: 0;
   word-break: break-all;
@@ -11,4 +11,4 @@ const InfoBox = styled.output`
   line-height: 1.5;
 `;
 
-export default InfoBox;
+export default CardContent;

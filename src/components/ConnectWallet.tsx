@@ -1,6 +1,6 @@
 import { useWalletStore } from "../store/wallet";
 import { connectWallet } from "../services/wallet";
-import { Card, Button, InfoBox } from "./common";
+import { Card, Button, CardContent } from "./common";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -36,10 +36,10 @@ export default function ConnectWallet() {
   return (
     <Card title="Connect Adena Wallet">
       {isConnected && address && (
-        <InfoBox aria-label={`Connected wallet address: ${address}`}>
+        <CardContent aria-label={`Connected wallet address: ${address}`}>
           <StatusDot aria-hidden="true" />
           {address}
-        </InfoBox>
+        </CardContent>
       )}
       <Button
         disabled={isConnected}
