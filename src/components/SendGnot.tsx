@@ -54,7 +54,6 @@ const Input = styled.input`
   outline: none;
   background: transparent;
   color: #1d1d1f;
-  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
 
   &::placeholder {
     color: #aeaeb2;

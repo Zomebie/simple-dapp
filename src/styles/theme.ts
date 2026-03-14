@@ -5,6 +5,9 @@ export const theme = {
     success: "#30d158",
     error: "#ff453a",
   },
+  fonts: {
+    sans: `-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif`,
+  },
 } as const;
 
 export type Theme = typeof theme;

@@ -58,7 +58,6 @@ const Message = styled.div`
   font-size: 11px;
   word-break: break-all;
   opacity: 0.85;
-  font-family: "SF Mono", SFMono-Regular, ui-monospace, monospace;
   line-height: 1.4;
 `;
 
