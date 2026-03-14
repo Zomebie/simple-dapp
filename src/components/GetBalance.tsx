@@ -29,6 +29,9 @@ export default function GetBalance() {
 
   return (
     <Card title="Get Balance">
+      <Button disabled={!isConnected} onClick={handleGetBalance} aria-label="Get account balance">
+        Get Balance
+      </Button>
       <CardContent aria-label={`Account balance: ${balance}`}>
         <span>Balance: {balance}</span>
         <HelpText>
@@ -36,10 +39,6 @@ export default function GetBalance() {
           <br />1 GNOT = 1,000,000 ugnot
         </HelpText>
       </CardContent>
-
-      <Button disabled={!isConnected} onClick={handleGetBalance} aria-label="Get account balance">
-        Get Balance
-      </Button>
     </Card>
   );
 }

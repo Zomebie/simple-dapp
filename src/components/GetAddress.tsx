@@ -23,12 +23,12 @@ export default function GetAddress() {
 
   return (
     <Card title="Get Gno.land Address">
-      <CardContent aria-label={`Gno.land address: ${address}`}>
-        Address: {address ?? ""}
-      </CardContent>
       <Button disabled={!isConnected} onClick={handleGetAddress} aria-label="Get Gno.land address">
         Get Address
       </Button>
+      <CardContent aria-label={`Gno.land address: ${address}`}>
+        Address: {address ?? ""}
+      </CardContent>
     </Card>
   );
 }
