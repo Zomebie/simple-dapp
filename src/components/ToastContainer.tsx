@@ -1,5 +1,8 @@
+import { useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { useWalletStore } from "../store/wallet";
+
+const TOAST_DURATION = 3000;
 
 const slideIn = keyframes`
   from {
@@ -58,7 +61,32 @@ const Message = styled.div`
 `;
 
 export default function ToastContainer() {
-  const { toasts } = useWalletStore();
+  const { toasts, removeToast } = useWalletStore();
+  const timersRef = useRef<Map<number, ReturnType<typeof setTimeout>>>(new Map());
+
+  useEffect(
+    function scheduleRemoval() {
+      toasts.forEach((toast) => {
+        if (timersRef.current.has(toast.id)) return;
+
+        const timer = setTimeout(() => {
+          removeToast(toast.id);
+          timersRef.current.delete(toast.id);
+        }, TOAST_DURATION);
+
+        timersRef.current.set(toast.id, timer);
+      });
+    },
+    [toasts, removeToast],
+  );
+
+  useEffect(function clearTimers() {
+    const timers = timersRef.current;
+    return () => {
+      timers.forEach((timer) => clearTimeout(timer));
+      timers.clear();
+    };
+  }, []);
 
   if (toasts.length === 0) return null;
 

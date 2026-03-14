@@ -18,6 +18,7 @@ interface WalletState {
   setAddress: (address: string | null) => void;
   setBalance: (balance: string | null) => void;
   addToast: (toast: { title: string; status: "success" | "failed"; message: string }) => void;
+  removeToast: (id: number) => void;
 }
 
 export const useWalletStore = create<WalletState>((set) => ({
@@ -37,10 +38,11 @@ export const useWalletStore = create<WalletState>((set) => ({
     set((state) => ({
       toasts: [...state.toasts, { id, title, status, message }],
     }));
-    setTimeout(() => {
-      set((state) => ({
-        toasts: state.toasts.filter((t) => t.id !== id),
-      }));
-    }, 3000);
+  },
+
+  removeToast: (id) => {
+    set((state) => ({
+      toasts: state.toasts.filter((t) => t.id !== id),
+    }));
   },
 }));
