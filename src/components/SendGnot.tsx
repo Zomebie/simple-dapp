@@ -2,8 +2,7 @@ import { useId } from "react";
 import { useForm } from "react-hook-form";
 import { useWalletStore } from "../store/wallet";
 import { sendGnot } from "../services/wallet";
-import Card from "./common/Card";
-import Button from "./common/Button";
+import { Card, Button } from "./common";
 import styled from "styled-components";
 
 const Form = styled.form`

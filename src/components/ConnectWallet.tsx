@@ -1,8 +1,6 @@
 import { useWalletStore } from "../store/wallet";
 import { connectWallet } from "../services/wallet";
-import Card from "./common/Card";
-import Button from "./common/Button";
-import InfoBox from "./common/InfoBox";
+import { Card, Button, InfoBox } from "./common";
 import styled from "styled-components";
 import { useState } from "react";
 

@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useWalletStore } from "../store/wallet";
 import { getBalance } from "../services/wallet";
-import Card from "./common/Card";
-import Button from "./common/Button";
-import InfoBox from "./common/InfoBox";
+import { Card, Button, InfoBox } from "./common";
 import styled from "styled-components";
 
 const HelpText = styled.p`
