@@ -2,14 +2,11 @@ import styled from "styled-components";
 
 const CardWrapper = styled.section`
   border-radius: 16px;
-  overflow: hidden;
   background: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.03);
   transition: box-shadow 0.3s ease;
-
-  &:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.05);
-  }
 `;
 
 const CardHeader = styled.div`
@@ -30,7 +27,7 @@ const CardBody = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 1rem;
 `;
 
 interface CardProps {
