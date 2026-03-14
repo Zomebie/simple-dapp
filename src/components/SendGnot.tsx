@@ -28,7 +28,6 @@ const Label = styled.label`
 `;
 
 const InputWrapper = styled.div<{ $hasError?: boolean }>`
-  position: relative;
   display: flex;
   align-items: center;
   background: #f5f5f7;
@@ -77,10 +76,11 @@ const ErrorText = styled.span`
   font-size: 11px;
   color: ${({ theme }) => theme.colors.error};
   margin-top: 2px;
+  padding-left: 3px;
 `;
 
 interface SendFormValues {
-  toAddress: string;
+  address: string;
   amount: string;
 }
 
@@ -99,14 +99,14 @@ export default function SendGnot() {
     formState: { errors, isSubmitting },
   } = useForm<SendFormValues>({
     defaultValues: {
-      toAddress: "",
+      address: "",
       amount: "",
     },
   });
 
   const onSubmit = async (data: SendFormValues) => {
     try {
-      const result = await sendGnot(data.toAddress, data.amount);
+      const result = await sendGnot(data.address, data.amount);
       if (result.status !== "success") throw new Error("Failed to send GNOT");
 
       addToast({
@@ -114,9 +114,7 @@ export default function SendGnot() {
         status: result.status,
         message: "txHash: " + (result.txHash ?? "-"),
       });
-      if (result.status === "success") {
-        reset();
-      }
+      reset();
     } catch (error) {
       console.error(error);
       addToast({
@@ -132,15 +130,14 @@ export default function SendGnot() {
       <Form onSubmit={handleSubmit(onSubmit)} aria-label="Send GNOT form" noValidate>
         <FieldGroup>
           <Label htmlFor={addressId}>To Address</Label>
-          <InputWrapper $hasError={!!errors.toAddress}>
+          <InputWrapper $hasError={!!errors.address}>
             <Input
               id={addressId}
               type="text"
               placeholder="g1..."
-              autoComplete="off"
-              aria-invalid={!!errors.toAddress}
-              aria-describedby={errors.toAddress ? addressErrorId : undefined}
-              {...register("toAddress", {
+              aria-invalid={!!errors.address}
+              aria-describedby={errors.address ? addressErrorId : undefined}
+              {...register("address", {
                 required: "Address is required",
                 pattern: {
                   value: /^g1[a-z0-9]{38}$/,
@@ -149,9 +146,9 @@ export default function SendGnot() {
               })}
             />
           </InputWrapper>
-          {errors.toAddress && (
+          {errors.address && (
             <ErrorText id={addressErrorId} role="alert">
-              {errors.toAddress.message}
+              {errors.address.message}
             </ErrorText>
           )}
         </FieldGroup>
@@ -162,7 +159,7 @@ export default function SendGnot() {
             <Input
               id={amountId}
               type="number"
-              placeholder="1000000"
+              placeholder="1,000,000"
               autoComplete="off"
               aria-invalid={!!errors.amount}
               aria-describedby={errors.amount ? amountErrorId : undefined}
