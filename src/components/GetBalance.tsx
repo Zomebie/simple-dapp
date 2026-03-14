@@ -7,8 +7,6 @@ import styled from "styled-components";
 const HelpText = styled.p`
   font-size: 12px;
   color: #86868b;
-  margin: 0;
-  line-height: 1.6;
 `;
 
 export default function GetBalance() {
@@ -31,13 +29,14 @@ export default function GetBalance() {
 
   return (
     <Card title="Get Balance">
-      {balance !== null && (
-        <CardContent aria-label={`Account balance: ${balance}`}>{balance}</CardContent>
-      )}
-      <HelpText>
-        Balance is displayed in <strong>ugnot</strong> (micro GNOT).
-        <br />1 GNOT = 1,000,000 ugnot
-      </HelpText>
+      <CardContent aria-label={`Account balance: ${balance}`}>
+        <span>Balance: {balance}</span>
+        <HelpText>
+          Balance is displayed in <strong>ugnot</strong> (micro GNOT).
+          <br />1 GNOT = 1,000,000 ugnot
+        </HelpText>
+      </CardContent>
+
       <Button disabled={!isConnected} onClick={handleGetBalance} aria-label="Get account balance">
         Get Balance
       </Button>

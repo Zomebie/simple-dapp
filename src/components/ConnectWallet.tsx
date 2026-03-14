@@ -37,8 +37,10 @@ export default function ConnectWallet() {
     <Card title="Connect Adena Wallet">
       {isConnected && address && (
         <CardContent aria-label={`Connected wallet address: ${address}`}>
-          <StatusDot aria-hidden="true" />
-          {address}
+          <span>
+            <StatusDot aria-hidden="true" />
+            {address}
+          </span>
         </CardContent>
       )}
       <Button
