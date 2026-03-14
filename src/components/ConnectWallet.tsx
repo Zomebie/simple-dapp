@@ -1,6 +1,6 @@
 import { useWalletStore } from "../store/wallet";
 import { connectWallet } from "../services/wallet";
-import { Card, Button, CardContent } from "./common";
+import { Card, Button, CardContent, LoadingBar } from "./common";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -17,8 +17,10 @@ const StatusDot = styled.span`
 export default function ConnectWallet() {
   const { isConnected, setIsConnected, addToast } = useWalletStore();
   const [address, setAddress] = useState<string>();
+  const [loading, setLoading] = useState(false);
 
   const handleConnect = async () => {
+    setLoading(true);
     try {
       const addr = await connectWallet();
       setAddress(addr);
@@ -30,18 +32,21 @@ export default function ConnectWallet() {
         status: "failed",
         message: error instanceof Error ? error.message : "Failed to connect wallet",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <Card title="Connect Adena Wallet">
       <Button
-        disabled={isConnected}
+        disabled={isConnected || loading}
         onClick={handleConnect}
         aria-label={isConnected ? "Wallet already connected" : "Connect Adena wallet"}
       >
         Connect
       </Button>
+      {loading && <LoadingBar />}
       {isConnected && address && (
         <CardContent aria-label={`Connected wallet address: ${address}`}>
           <span>
