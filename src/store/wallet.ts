@@ -12,11 +12,9 @@ interface Toast {
 interface WalletState {
   isConnected: boolean;
   address: string | null;
-  balance: string | null;
   toasts: Toast[];
   setIsConnected: (isConnected: boolean) => void;
   setAddress: (address: string | null) => void;
-  setBalance: (balance: string | null) => void;
   addToast: (toast: { title: string; status: "success" | "failed"; message: string }) => void;
   removeToast: (id: number) => void;
 }
@@ -30,8 +28,6 @@ export const useWalletStore = create<WalletState>((set) => ({
   setIsConnected: (isConnected) => set({ isConnected }),
 
   setAddress: (address) => set({ address }),
-
-  setBalance: (balance) => set({ balance }),
 
   addToast: ({ title, status, message }) => {
     const id = ++toastId;
