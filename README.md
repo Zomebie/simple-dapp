@@ -41,7 +41,30 @@ View Layer (components)  →  Business Layer (services)  →  Data Layer (api)
 - **Business Layer**: 응답 검증, 에러 처리, 데이터 변환 등 비즈니스 로직 담당
 - **Data Layer**: `WalletProvider` 인터페이스를 통해 지갑 API를 추상화하여 호출
 - **Providers**: `WalletProvider` 인터페이스의 구체적 구현체 (e.g. `AdenaProvider`)
-- **Context**: 서비스 함수와 상태를 컴포넌트에 주입하여, 모듈 직접 import 없이 테스트 가능
+- **Context**: 서비스 함수와 상태를 컴포넌트에 주입 (의존성 주입 패턴)
+
+### 테스트 용이성을 위한 설계
+
+컴포넌트가 서비스 모듈을 직접 import하면 Jest 환경에서 `jest.mock()`으로 모듈을 가로채야 하고, import 체인에 의해 `window.adena` 같은 브라우저 의존성이 함께 로드됩니다.
+
+이를 해결하기 위해 **Context를 통한 의존성 주입** 패턴을 적용했습니다:
+
+- 컴포넌트는 `useWallet()` 훅으로 서비스 함수를 주입받기만 하므로, 함수의 출처를 알지 못함
+- 테스트 시 `jest.mock()` 없이 Context Provider에 가짜 함수를 넘기는 것만으로 단위 테스트 가능
+- Data Layer는 `WalletProvider` 인터페이스로 추상화되어, `setWalletProvider()`로 구현체 교체 가능
+
+```tsx
+// 테스트 예시 — jest.mock() 불필요
+render(
+  <WalletContext.Provider value={{
+    isConnected: true,
+    connectWallet: jest.fn().mockResolvedValue("g1abc..."),
+    // ...
+  }}>
+    <ConnectWallet />
+  </WalletContext.Provider>
+);
+```
 
 ## 디렉토리 구조
 
