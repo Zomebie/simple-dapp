@@ -31,19 +31,31 @@ npm run format
 
 ```
 View Layer (components)  →  Business Layer (services)  →  Data Layer (api)
-  UI 렌더링 & 이벤트 핸들링        비즈니스 로직 & 데이터 가공         Adena API 호출
+  UI 렌더링 & 이벤트 핸들링        비즈니스 로직 & 데이터 가공         지갑 API 호출
+        ↑
+  Context (contexts)
+    의존성 주입
 ```
 
-- **View Layer**: 사용자 인터랙션 처리, 서비스 호출, 결과 렌더링만 담당
+- **View Layer**: `useWallet()` 훅을 통해 Context에서 서비스 함수를 주입받아 사용
 - **Business Layer**: 응답 검증, 에러 처리, 데이터 변환 등 비즈니스 로직 담당
-- **Data Layer**: `window.adena` API를 캡슐화하여 순수한 API 호출만 담당 (싱글톤 패턴)
+- **Data Layer**: `WalletProvider` 인터페이스를 통해 지갑 API를 추상화하여 호출
+- **Providers**: `WalletProvider` 인터페이스의 구체적 구현체 (e.g. `AdenaProvider`)
+- **Context**: 서비스 함수와 상태를 컴포넌트에 주입하여, 모듈 직접 import 없이 테스트 가능
 
 ## 디렉토리 구조
 
 ```
 src/
-├── api/                        # [Data Layer] Adena 지갑 API 호출
-│   └── wallet.ts               # - window.adena 싱글톤 래퍼 (establish, getAccount, doContract)
+├── api/                        # [Data Layer] 지갑 API 호출 (WalletProvider 추상화)
+│   └── wallet.ts               # - setWalletProvider, establish, getAccount, doContract
+│
+├── providers/                  # WalletProvider 인터페이스 구현체
+│   └── adena.ts                # - AdenaProvider (window.adena 래핑)
+│
+├── contexts/                   # React Context (의존성 주입)
+│   ├── WalletContext.tsx        # - WalletContextValue 인터페이스 & useWallet() 훅
+│   └── WalletContextProvider.tsx # - 서비스 + 스토어를 조립하여 컴포넌트에 주입
 │
 ├── services/                   # [Business Layer] 비즈니스 로직 & 데이터 가공
 │   └── wallet.ts               # - connectWallet, getAddress, getBalance, sendGnot
@@ -52,7 +64,7 @@ src/
 │   └── wallet.ts               # - isConnected, toasts
 │
 ├── types/                      # TypeScript 타입 정의
-│   └── index.ts                # - Adena API 응답 타입 (Response, Account, Transaction 등)
+│   └── index.ts                # - WalletProvider, Adena API 응답 타입 등
 │
 ├── utils/                      # 유틸리티 함수
 │   └── format.ts               # - formatBalance (잔액 포맷팅)
@@ -70,7 +82,7 @@ src/
 │   ├── SendGnot.tsx            # - GNOT 전송 (react-hook-form)
 │   └── ToastContainer.tsx      # - 트랜잭션 결과 Toast 알림
 │
-├── App.tsx                     # 루트 컴포넌트 (ThemeProvider, 레이아웃)
+├── App.tsx                     # 루트 컴포넌트 (ThemeProvider, WalletContextProvider)
 └── main.tsx                    # 엔트리 포인트
 ```
 
