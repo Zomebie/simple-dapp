@@ -1,28 +1,24 @@
-import type { Account, Response, AdenaWallet, DoContractParams, Transaction } from "@/types";
+import type { WalletProvider } from "@/types";
+import { AdenaProvider } from "./providers/adena";
 
-let adenaInstance: AdenaWallet | null = null;
+let provider: WalletProvider = new AdenaProvider();
 
-function getAdena(): AdenaWallet {
-  if (!adenaInstance) {
-    if (!window.adena) {
-      throw new Error("Please install Adena wallet extension.");
-    }
-    adenaInstance = window.adena;
-  }
-  return adenaInstance;
+export function setWalletProvider(newProvider: WalletProvider) {
+  provider = newProvider;
 }
 
-export async function establish(siteName: string): Promise<Response> {
-  const adena = getAdena();
-  return adena.AddEstablish(siteName);
+export function getWalletProvider(): WalletProvider {
+  return provider;
 }
 
-export async function getAccount(): Promise<Response<Account>> {
-  const adena = getAdena();
-  return adena.GetAccount();
+export async function establish(siteName: string) {
+  return provider.establish(siteName);
 }
 
-export async function doContract(params: DoContractParams): Promise<Response<Transaction>> {
-  const adena = getAdena();
-  return adena.DoContract(params);
+export async function getAccount() {
+  return provider.getAccount();
+}
+
+export async function doContract(params: Parameters<WalletProvider["doContract"]>[0]) {
+  return provider.doContract(params);
 }

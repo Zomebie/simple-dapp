@@ -32,6 +32,12 @@ export interface DoContractParams {
   isNotification?: boolean;
 }
 
+export interface WalletProvider {
+  establish: (name: string) => Promise<Response>;
+  getAccount: () => Promise<Response<Account>>;
+  doContract: (params: DoContractParams) => Promise<Response<Transaction>>;
+}
+
 export interface AdenaWallet {
   AddEstablish: (name: string) => Promise<Response>;
   GetAccount: () => Promise<Response<Account>>;
