@@ -1,24 +1,30 @@
 import type { WalletProvider } from "@/types";
-import { AdenaProvider } from "./providers/adena";
 
-let provider: WalletProvider = new AdenaProvider();
+let provider: WalletProvider | null = null;
+
+function getProvider(): WalletProvider {
+  if (!provider) {
+    throw new Error("WalletProvider is not initialized. Call setWalletProvider() first.");
+  }
+  return provider;
+}
 
 export function setWalletProvider(newProvider: WalletProvider) {
   provider = newProvider;
 }
 
 export function getWalletProvider(): WalletProvider {
-  return provider;
+  return getProvider();
 }
 
 export async function establish(siteName: string) {
-  return provider.establish(siteName);
+  return getProvider().establish(siteName);
 }
 
 export async function getAccount() {
-  return provider.getAccount();
+  return getProvider().getAccount();
 }
 
 export async function doContract(params: Parameters<WalletProvider["doContract"]>[0]) {
-  return provider.doContract(params);
+  return getProvider().doContract(params);
 }
