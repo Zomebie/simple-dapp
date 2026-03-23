@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useWalletStore } from "../store/wallet";
-import { getBalance } from "../services/wallet";
+import { useWallet } from "../contexts/WalletContext";
 import { Card, Button, CardContent, LoadingBar } from "./common";
 import styled from "styled-components";
 
@@ -10,7 +9,7 @@ const HelpText = styled.p`
 `;
 
 export default function GetBalance() {
-  const { isConnected, addToast } = useWalletStore();
+  const { isConnected, addToast, getBalance } = useWallet();
   const [balance, setBalance] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -33,7 +32,11 @@ export default function GetBalance() {
 
   return (
     <Card title="Get Balance">
-      <Button disabled={!isConnected || loading} onClick={handleGetBalance} aria-label="Get account balance">
+      <Button
+        disabled={!isConnected || loading}
+        onClick={handleGetBalance}
+        aria-label="Get account balance"
+      >
         Get Balance
       </Button>
       {loading && <LoadingBar />}

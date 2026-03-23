@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useWalletStore } from "../store/wallet";
-import { getAddress } from "../services/wallet";
+import { useWallet } from "../contexts/WalletContext";
 import { Card, Button, CardContent, LoadingBar } from "./common";
 
 export default function GetAddress() {
-  const { isConnected, addToast } = useWalletStore();
+  const { isConnected, addToast, getAddress } = useWallet();
   const [address, setAddress] = useState<string>();
   const [loading, setLoading] = useState(false);
 
@@ -27,7 +26,11 @@ export default function GetAddress() {
 
   return (
     <Card title="Get Gno.land Address">
-      <Button disabled={!isConnected || loading} onClick={handleGetAddress} aria-label="Get Gno.land address">
+      <Button
+        disabled={!isConnected || loading}
+        onClick={handleGetAddress}
+        aria-label="Get Gno.land address"
+      >
         Get Address
       </Button>
       {loading && <LoadingBar />}

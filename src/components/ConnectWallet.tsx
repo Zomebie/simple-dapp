@@ -1,5 +1,4 @@
-import { useWalletStore } from "../store/wallet";
-import { connectWallet } from "../services/wallet";
+import { useWallet } from "../contexts/WalletContext";
 import { Card, Button, CardContent, LoadingBar } from "./common";
 import styled from "styled-components";
 import { useState } from "react";
@@ -15,7 +14,7 @@ const StatusDot = styled.span`
 `;
 
 export default function ConnectWallet() {
-  const { isConnected, setIsConnected, addToast } = useWalletStore();
+  const { isConnected, setIsConnected, addToast, connectWallet } = useWallet();
   const [address, setAddress] = useState<string>();
   const [loading, setLoading] = useState(false);
 

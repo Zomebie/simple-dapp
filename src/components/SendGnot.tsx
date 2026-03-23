@@ -1,7 +1,6 @@
 import { useId } from "react";
 import { useForm } from "react-hook-form";
-import { useWalletStore } from "../store/wallet";
-import { sendGnot } from "../services/wallet";
+import { useWallet } from "../contexts/WalletContext";
 import { Card, Button } from "./common";
 import styled from "styled-components";
 
@@ -37,7 +36,8 @@ const InputWrapper = styled.div<{ $hasError?: boolean }>`
 
   &:focus-within {
     background: #ffffff;
-    border-color: ${({ $hasError, theme }) => ($hasError ? theme.colors.error : theme.colors.active)};
+    border-color: ${({ $hasError, theme }) =>
+      $hasError ? theme.colors.error : theme.colors.active};
     box-shadow: ${({ $hasError }) =>
       $hasError ? "0 0 0 3px rgba(255, 69, 58, 0.12)" : "0 0 0 3px rgba(44, 75, 226, 0.1)"};
   }
@@ -85,7 +85,7 @@ interface SendFormValues {
 }
 
 export default function SendGnot() {
-  const { isConnected, addToast } = useWalletStore();
+  const { isConnected, addToast, sendGnot } = useWallet();
   const id = useId();
   const addressId = `${id}-address`;
   const amountId = `${id}-amount`;

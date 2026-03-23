@@ -1,6 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import GlobalStyle from "./styles/GlobalStyle";
+import WalletContextProvider from "./contexts/WalletContextProvider";
 import ConnectWallet from "./components/ConnectWallet";
 import GetAddress from "./components/GetAddress";
 import GetBalance from "./components/GetBalance";
@@ -42,18 +43,20 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Page>
-        <Header>
-          <Title>Request to Gno.land via Adena wallet</Title>
-        </Header>
-        <Main>
-          <ConnectWallet />
-          <GetAddress />
-          <GetBalance />
-          <SendGnot />
-        </Main>
-      </Page>
-      <ToastContainer />
+      <WalletContextProvider>
+        <Page>
+          <Header>
+            <Title>Request to Gno.land via Adena wallet</Title>
+          </Header>
+          <Main>
+            <ConnectWallet />
+            <GetAddress />
+            <GetBalance />
+            <SendGnot />
+          </Main>
+        </Page>
+        <ToastContainer />
+      </WalletContextProvider>
     </ThemeProvider>
   );
 }
